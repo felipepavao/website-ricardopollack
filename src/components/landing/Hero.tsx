@@ -1,4 +1,17 @@
-import { CHECKOUT_URL, START_DATE, SPOTS_TOTAL, CURRENT_PRICE, NEXT_PRICE, MONTHLY_INSTALLMENTS } from "@/lib/landing-config";
+import {
+  CHECKOUT_URL,
+  START_DATE,
+  SPOTS_TOTAL,
+  CURRENT_PRICE,
+  NEXT_PRICE,
+  MONTHLY_INSTALLMENTS,
+} from "@/lib/landing-config";
+
+const stats = [
+  { value: "25 anos", label: "de consultoria financeira" },
+  { value: "R$1 bilhão", label: "em carteira sob orientação" },
+  { value: "20 vagas", label: "nesta turma" },
+];
 
 const Hero = () => (
   <section className="min-h-screen flex flex-col justify-center bg-[#1d192e] relative overflow-hidden">
@@ -10,8 +23,7 @@ const Hero = () => (
           "repeating-linear-gradient(-45deg, #c3aa4e, #c3aa4e 1px, transparent 1px, transparent 14px)",
       }}
     />
-
-    {/* Gold glow bottom */}
+    {/* Gold glow */}
     <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[#c3aa4e]/5 rounded-full blur-[80px] pointer-events-none" />
 
     <div className="relative max-w-4xl mx-auto px-6 py-28 text-center">
@@ -42,7 +54,7 @@ const Hero = () => (
       </p>
 
       {/* CTA */}
-      <div className="flex flex-col items-center gap-4">
+      <div className="flex flex-col items-center gap-4 mb-14">
         <a
           href={CHECKOUT_URL}
           className="btn-primary text-lg md:text-xl px-10 md:px-14 py-5 md:py-6"
@@ -50,14 +62,28 @@ const Hero = () => (
           Garantir Minha Vaga — {CURRENT_PRICE}
         </a>
         <p className="text-white/30 text-sm">
-          Em até {MONTHLY_INSTALLMENTS}x sem juros no cartão · Próxima turma: {NEXT_PRICE}
+          Em até {MONTHLY_INSTALLMENTS}x sem juros · 7 dias de garantia · Próxima turma: {NEXT_PRICE}
         </p>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-25">
-        <div className="w-px h-10 bg-gradient-to-b from-[#c3aa4e] to-transparent" />
+      {/* Stats strip */}
+      <div className="border border-[#c3aa4e]/20 bg-[#c3aa4e]/5 rounded-xl px-6 py-5">
+        <div className="flex flex-col sm:flex-row items-center justify-center divide-y sm:divide-y-0 sm:divide-x divide-[#c3aa4e]/15 gap-0">
+          {stats.map((s, i) => (
+            <div key={i} className="px-6 py-3 sm:py-0 text-center">
+              <p className="font-serif text-xl font-bold text-[#c3aa4e] leading-none">
+                {s.value}
+              </p>
+              <p className="text-[#94a3b8] text-xs mt-1">{s.label}</p>
+            </div>
+          ))}
+        </div>
       </div>
+    </div>
+
+    {/* Scroll indicator */}
+    <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-20">
+      <div className="w-px h-10 bg-gradient-to-b from-[#c3aa4e] to-transparent" />
     </div>
   </section>
 );
