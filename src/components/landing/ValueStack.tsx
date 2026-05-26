@@ -1,0 +1,115 @@
+import { CHECKOUT_URL, CURRENT_PRICE, NEXT_PRICE, MONTHLY_INSTALLMENTS, START_DATE } from "@/lib/landing-config";
+
+type LineItem = {
+  label: string;
+  description: string;
+  value: string;
+};
+
+const ITEMS: LineItem[] = [
+  {
+    label: "5 aulas ao vivo",
+    description: "Mentoria em grupo com Ricardo Pollack",
+    value: "R$ 4.500",
+  },
+  {
+    label: "12 módulos gravados",
+    description: "Área de membros com acesso de 12 meses",
+    value: "R$ 2.400",
+  },
+  {
+    label: "Planilha de Cálculos Financeiros",
+    description: "A mesma usada em consultoria",
+    value: "R$ 1.200",
+  },
+  {
+    label: "Material didático completo",
+    description: "Glossário do Banquês, checklists, argumentário",
+    value: "R$ 800",
+  },
+  {
+    label: "Suporte WhatsApp e e-mail",
+    description: "Entre os 5 encontros ao vivo",
+    value: "R$ 1.200",
+  },
+];
+
+const TOTAL_INDIVIDUAL = "R$ 10.100";
+
+const ValueStack = () => (
+  <section className="bg-[#17213a] py-20 md:py-28 border-t border-[#c3aa4e]/10">
+    <div className="prose-medium">
+      <p className="text-[#c3aa4e] text-xs uppercase tracking-[0.2em] font-semibold mb-3">
+        Investimento
+      </p>
+      <h2 className="font-serif text-3xl md:text-4xl text-white font-bold mb-10 leading-snug">
+        O que você está recebendo
+      </h2>
+
+      {/* Table */}
+      <div className="border border-[#c3aa4e]/20 rounded-xl overflow-hidden mb-8">
+        {/* Header */}
+        <div className="bg-[#c3aa4e]/10 px-5 md:px-7 py-3 grid grid-cols-[1fr_auto] gap-4">
+          <span className="text-[#c3aa4e] text-xs uppercase tracking-widest font-semibold">
+            Componente
+          </span>
+          <span className="text-[#c3aa4e] text-xs uppercase tracking-widest font-semibold text-right">
+            Valor de mercado
+          </span>
+        </div>
+
+        {/* Rows */}
+        {ITEMS.map((item, i) => (
+          <div
+            key={i}
+            className="px-5 md:px-7 py-4 grid grid-cols-[1fr_auto] gap-4 items-center border-t border-[#c3aa4e]/10 bg-[#1a2844]"
+          >
+            <div>
+              <p className="text-[#f1f5f9] font-medium text-sm md:text-base">
+                {item.label}
+              </p>
+              <p className="text-[#64748b] text-xs mt-0.5">{item.description}</p>
+            </div>
+            <span className="text-[#94a3b8] text-sm font-mono whitespace-nowrap line-through">
+              {item.value}
+            </span>
+          </div>
+        ))}
+
+        {/* Total row */}
+        <div className="px-5 md:px-7 py-4 grid grid-cols-[1fr_auto] gap-4 items-center border-t border-[#c3aa4e]/30 bg-[#c3aa4e]/5">
+          <p className="text-[#f1f5f9] font-semibold text-sm md:text-base">
+            Valor total — se vendidos individualmente
+          </p>
+          <span className="text-[#94a3b8] font-mono text-sm line-through whitespace-nowrap">
+            {TOTAL_INDIVIDUAL}
+          </span>
+        </div>
+      </div>
+
+      {/* Price highlight */}
+      <div className="border border-[#c3aa4e]/40 bg-[#c3aa4e]/5 rounded-xl px-6 md:px-10 py-8 text-center space-y-4">
+        <p className="text-[#c3aa4e] text-xs uppercase tracking-[0.2em] font-semibold">
+          Investimento nesta turma
+        </p>
+        <p className="font-serif text-5xl md:text-6xl font-bold text-[#c3aa4e]">
+          {CURRENT_PRICE}
+        </p>
+        <p className="text-[#94a3b8] text-sm">
+          Em até {MONTHLY_INSTALLMENTS}x sem juros no cartão, ou via Pix
+        </p>
+        <a
+          href={CHECKOUT_URL}
+          className="btn-primary inline-block text-lg px-10 py-5 mt-2"
+        >
+          Garantir Minha Vaga — {CURRENT_PRICE}
+        </a>
+        <p className="text-[#94a3b8]/60 text-xs pt-1">
+          Início: {START_DATE} · A partir da próxima turma: {NEXT_PRICE}
+        </p>
+      </div>
+    </div>
+  </section>
+);
+
+export default ValueStack;

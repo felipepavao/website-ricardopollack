@@ -1,4 +1,4 @@
+/* Landing page usa full-width — cada seção controla sua própria largura */
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
+  width: 100%;
 }
